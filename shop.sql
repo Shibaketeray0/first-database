@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Sep 16, 2022 at 10:54 AM
+-- Generation Time: Oct 02, 2022 at 01:02 PM
 -- Server version: 10.6.5-MariaDB-1:10.6.5+maria~focal
 -- PHP Version: 8.0.19
 
@@ -66,19 +66,19 @@ CREATE TABLE `Orders` (
 
 INSERT INTO `Orders` (`id_of_order`, `Person`, `Date`, `Name`) VALUES
 (1, 1, '2022-05-12', 3),
-(2, 2, '2022-05-12', 4),
+(7, 2, '2022-05-12', 4),
 (3, 1, '2022-05-12', 2),
-(4, 1, '2022-05-12', 5),
+(2, 1, '2022-05-12', 5),
 (5, 4, '2022-05-12', 3),
-(6, 3, '2022-05-12', 7),
-(7, 1, '2022-05-12', 1),
-(8, 5, '2022-05-12', 3),
-(9, 2, '2022-05-12', 3),
-(10, 8, '2022-05-12', 3),
-(11, 1, '2022-05-12', 3),
-(12, 1, '2022-05-12', 3),
-(13, 4, '2022-05-12', 4),
-(14, 4, '2022-05-12', 2);
+(8, 3, '2022-05-12', 7),
+(4, 1, '2022-05-12', 1),
+(10, 5, '2022-05-12', 3),
+(6, 2, '2022-05-12', 3),
+(9, 8, '2022-05-12', 3),
+(1, 1, '2022-05-12', 3),
+(1, 1, '2022-05-12', 3),
+(5, 4, '2022-05-12', 4),
+(5, 4, '2022-05-12', 2);
 
 -- --------------------------------------------------------
 
@@ -121,7 +121,6 @@ ALTER TABLE `Goods`
 -- Indexes for table `Orders`
 --
 ALTER TABLE `Orders`
-  ADD PRIMARY KEY (`id_of_order`),
   ADD KEY `Person` (`Person`),
   ADD KEY `Name` (`Name`);
 
@@ -140,12 +139,6 @@ ALTER TABLE `People`
 --
 ALTER TABLE `Goods`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `Orders`
---
-ALTER TABLE `Orders`
-  MODIFY `id_of_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `People`
