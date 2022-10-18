@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Oct 17, 2022 at 11:57 AM
+-- Generation Time: Oct 18, 2022 at 03:09 PM
 -- Server version: 10.6.5-MariaDB-1:10.6.5+maria~focal
 -- PHP Version: 8.0.19
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `Goods` (
   `id` int(11) NOT NULL,
-  `Name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Good_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Price` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -37,15 +37,15 @@ CREATE TABLE `Goods` (
 -- Dumping data for table `Goods`
 --
 
-INSERT INTO `Goods` (`id`, `Name`, `Price`) VALUES
-(1, 'TV', 15000),
-(2, 'Smartphone', 9000),
-(3, 'Microwave', 10000),
-(4, 'Tablet', 14000),
-(5, 'Smart watch', 3000),
-(6, 'Headphones', 7000),
-(7, 'Teapot', 4000),
-(8, 'Laptop', 30000);
+INSERT INTO `Goods` (`id`, `Good_name`, `Price`) VALUES
+(1, 'TV', 500),
+(2, 'Smartphone', 300),
+(3, 'Microwave', 700),
+(4, 'Tablet', 700),
+(5, 'Smart watch', 70),
+(6, 'Headphones', 50),
+(7, 'Teapot', 90),
+(8, 'Laptop', 2000);
 
 -- --------------------------------------------------------
 
@@ -55,30 +55,28 @@ INSERT INTO `Goods` (`id`, `Name`, `Price`) VALUES
 
 CREATE TABLE `Orders` (
   `id` int(11) NOT NULL,
-  `Person` int(11) DEFAULT NULL,
+  `Person_id` int(11) DEFAULT NULL,
   `Date` date DEFAULT NULL,
-  `Name` int(11) DEFAULT NULL
+  `Good_id` int(11) DEFAULT NULL,
+  `Price_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `Orders`
 --
 
-INSERT INTO `Orders` (`id`, `Person`, `Date`, `Name`) VALUES
-(1, 1, '2022-05-12', 3),
-(2, 2, '2022-05-12', 4),
-(3, 1, '2022-05-12', 2),
-(4, 1, '2022-05-12', 5),
-(5, 4, '2022-05-12', 3),
-(6, 3, '2022-05-12', 7),
-(7, 1, '2022-05-12', 1),
-(8, 5, '2022-05-12', 3),
-(9, 2, '2022-05-12', 3),
-(10, 8, '2022-05-12', 3),
-(11, 1, '2022-05-12', 3),
-(12, 1, '2022-05-12', 3),
-(13, 4, '2022-05-12', 4),
-(14, 4, '2022-05-12', 2);
+INSERT INTO `Orders` (`id`, `Person_id`, `Date`, `Good_id`, `Price_id`) VALUES
+(1, 1, '2022-10-17', 1, 1),
+(2, 1, '2022-10-17', 3, 3),
+(3, 1, '2022-10-17', 6, 6),
+(4, 3, '2022-06-13', 1, 1),
+(5, 3, '2022-06-13', 8, 8),
+(6, 3, '2022-06-13', 6, 6),
+(7, 5, '2022-03-01', 4, 4),
+(8, 5, '2022-03-01', 2, 2),
+(9, 5, '2022-03-01', 8, 8),
+(10, 5, '2022-03-01', 3, 3),
+(11, 5, '2022-03-01', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -122,8 +120,8 @@ ALTER TABLE `Goods`
 --
 ALTER TABLE `Orders`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `Person` (`Person`),
-  ADD KEY `Name` (`Name`);
+  ADD KEY `Person` (`Person_id`),
+  ADD KEY `Name` (`Good_id`);
 
 --
 -- Indexes for table `People`
@@ -145,7 +143,7 @@ ALTER TABLE `Goods`
 -- AUTO_INCREMENT for table `Orders`
 --
 ALTER TABLE `Orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `People`
@@ -161,8 +159,9 @@ ALTER TABLE `People`
 -- Constraints for table `Orders`
 --
 ALTER TABLE `Orders`
-  ADD CONSTRAINT `Orders_ibfk_1` FOREIGN KEY (`Person`) REFERENCES `People` (`id`),
-  ADD CONSTRAINT `Orders_ibfk_2` FOREIGN KEY (`Name`) REFERENCES `Goods` (`id`);
+  ADD CONSTRAINT `Orders_ibfk_1` FOREIGN KEY (`Person_id`) REFERENCES `People` (`id`),
+  ADD CONSTRAINT `Orders_ibfk_2` FOREIGN KEY (`Good_id`) REFERENCES `Goods` (`id`),
+  ADD CONSTRAINT `Orders_ibfk_3` FOREIGN KEY (`Price_id`) REFERENCES `Goods` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
